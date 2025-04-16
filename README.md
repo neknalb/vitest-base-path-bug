@@ -1,38 +1,15 @@
-# sv
+# Sample project showing Vitest base path bug
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+When the base path set in `svelte.config.js` is equal to the beginning of the actual project path vitest fails because it resolves the node_modules path incorrectly.
 
-## Creating a project
+## Steps to reproduce
 
-If you're seeing this, you've probably already done this step. Congrats!
+If you are on macOS simply:
 
-```bash
-# create a new project in the current directory
-npx sv create
+- clone this sample repo somewhere into your home directory (path to project starts with `/Users`)
+- try to run `npm run test`
 
-# create a new project in my-app
-npx sv create my-app
-```
+If you are on another OS:
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- clone this sample repo somewhere on your machine and replace in `svelte.config.js` in the line `base: "/Users"` the `"/Users"` by the beginning of your project path.
+- try to run `npm run test`
